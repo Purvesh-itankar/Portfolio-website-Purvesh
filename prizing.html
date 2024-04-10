@@ -1,287 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" type="x-icon" href="logoheader.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edgek">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purvesh Itankar</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/09c32c2d1d.js" crossorigin="anonymous"></script>
-    <style>
-        body {
-          font-family: Arial, Helvetica, sans-serif;
-          font-size: 20px;
-        }
-        
-        #myBtn {
-          display: none;
-          position: fixed;
-          bottom: 20px;
-          right: 30px;
-          z-index: 99;
-          font-size: 18px;
-          border: none;
-          outline: none;
-          background-color: #ff004f;
-          color: white;
-          cursor: pointer;
-          padding: 15px;
-          border-radius: 4px;
-        }
-        
-        #myBtn:hover {
-          background-color: #555;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prizing Options</title>
+<style>
+body {
+  background-image: url('https://www.pixel4k.com/wp-content/uploads/2018/12/dark-red-black-abstract-4k_1546277906.jpg.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.button {
+  background-color: #ff004f;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.background {
+  background-color: rgba(38, 38, 38, 0.8);
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.text {
+  color: #fff;
+}
+
+.checkbox-text {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.input-field {
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+}
+
+.submit-button {
+  background-color: #ff004f;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.formate {
+  background-color: #ff004f;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+</style>
 </head>
 <body>
-    <button onclick="topFunction()" id="myBtn" title="Go to top">↑</button>
+
+<div class="container">
+  <div class="background">
+    <h2 class="text">Choose an option:</h2>
+    <button class="button" onclick="chooseOption('help')">Help me find prizing</button>
+    <button class="button" onclick="seePrizeSheet()">See prize sheet</button>
+  </div>
+</div>
+
 <script>
-// Get the button
-let mybutton = document.getElementById("myBtn");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
+function chooseOption(option) {
+  if (option === 'help') {
+    showPlatforms();
   }
 }
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+function showPlatforms() {
+  document.getElementsByClassName('background')[0].innerHTML = `
+    <h2 class="text">Choose platform:</h2>
+    <button class="button" onclick="choosePlatform('youtube')">YouTube</button>
+    <button class="button" onclick="choosePlatform('facebook')">Facebook/Instagram</button>
+  `;
+}
+
+function choosePlatform(platform) {
+  if (platform === 'youtube') {
+    showYouTubeOptions();
+  } else if (platform === 'facebook') {
+    showFacebookInstagramOptions();
+  }
+}
+
+function showYouTubeOptions() {
+  document.getElementsByClassName('background')[0].innerHTML = `
+    <h2 class="text">Choose option:</h2>
+    <button class="button" onclick="showPrice('thumbnail')">Thumbnail</button>
+    <button class="button" onclick="showPrice('video')">Video</button>
+    <button class="button" onclick="showPrice('shorts')">Shorts</button>
+  `;
+}
+
+function showFacebookInstagramOptions() {
+  document.getElementsByClassName('background')[0].innerHTML = `
+    <h2 class="text">Choose option:</h2>
+    <button class="button" onclick="showPrice('reel')">Reel</button>
+    <button class="button" onclick="showPrice('post')">Post</button>
+  `;
+}
+
+function showPrice(type) {
+  let priceText = '';
+  switch (type) {
+    case 'thumbnail':
+      priceText = '₹250 per thumbnail';
+      break;
+    case 'video':
+      priceText = `
+        Below 3 min - ₹250<br>
+        03:01 to 05:00 - ₹500<br>
+        05:01 to 08:00 - ₹750<br>
+        08:01 to 10:00 - ₹1000
+      `;
+      break;
+    case 'shorts':
+      priceText = `
+        00:30 - ₹50<br>
+        01:00 - ₹100
+      `;
+      break;
+    case 'reel':
+      priceText = `
+        00:30 - ₹50<br>
+        01:00 - ₹100
+      `;
+      break;
+    case 'post':
+      priceText = 'Per post ₹250';
+      break;
+  }
+  document.getElementsByClassName('background')[0].innerHTML = `
+    <h2 class="text">${priceText}</h2>
+    <input class="input-field" type="text" id="name" placeholder="Your Name" required>
+    <input class="input-field" type="email" id="email" placeholder="Your Email" required>
+    <input class="input-field" type="text" id="choice" placeholder="Your Choice" required>
+    <input type="checkbox" id="agreement" required>
+    <label class="checkbox-text" for="agreement">I agree to give you at least 1080p resolution of video with good audio quality for the best results.</label>
+    <button class="submit-button" onclick="submitSelections()">Submit</button>
+    <div class="formate">
+      <h3>Format of mailing:</h3>
+      <ol>
+        <li>Copy this mail --> purveshitankar25@gmail.com</li>
+        <li>Write your selection accordingly
+          <ul>
+            <li>a. Platform</li>
+            <li>b. File type</li>
+            <li>c. Plan</li>
+          </ul>
+        </li>
+        <li>Then just mail it to me!</li>
+      </ol>
+    </div>
+  `;
+}
+
+function submitSelections() {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const choice = document.getElementById('choice').value;
+  const selections = document.getElementsByClassName('text')[0].innerHTML;
+  
+  // Check if the agreement checkbox is checked
+  const agreementChecked = document.getElementById('agreement').checked;
+  
+  if (!agreementChecked) {
+    alert("Please agree to the terms to submit your selections.");
+    return;
+  }
+  
+  // Display confirmation message
+  if (confirm("You are going to be redirected to your Gmail. Have you copied the data?")) {
+    // Redirect to Gmail
+    window.open('https://mail.google.com/', '_blank');
+    
+    alert("You have successfully submitted your selections. Please wait for the response.");
+    
+    // Redirect to specified URL
+    window.location.href = 'https://purveshitankar.netlify.app/';
+  }
 }
 </script>
-<div id="header">
-    <div class="container">
-        <nav>
-            <a href="#header"><img src="logo.png" class="logo"></a>
-            <ul id="sidemenu">
-                <li><a href="#header">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <i class="fa-solid fa-times" onclick="closemenu()"></i>
-            </ul>
-            <i class="fa-solid fa-bars" onclick="openmenu()"></i>
-        </nav>
-        <div class="header-text">
-            <p>Video Editor</p>
-            <h1>Hi, I am <span>Purvesh</span><br>from India</h1>
-        </div>
-    </div>
-</div>
-<!-- --------------About---------------- -->
-<div id="about">
-    <div class="container">
-        <div class="row">
-            <div class="about-col-1">
-                <img src="user.png">
-            </div>
-            <div class="about-col-2">
-                <h1 class="sub-title">About me</h1>
-                <p>As a passionate video editor, I immerse myself in the art of storytelling
-                through visual media. With a keen interest in video editing, I strive to 
-                create engaging and creative content that captivates audiences. <br><br> 
-                With a dedication to continuous improvement and a passion for pushing creative
-                boundaries, I am committed to delivering results that exceed expectations. Let's 
-                collaborate to bring your vision to life through the power of video editing.</p>
 
-                    <div class="tab-titles">
-                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                        <p class="tab-links"onclick="opentab('experiance')">Experiance</p>
-                        <p class="tab-links"onclick="opentab('education')">Education</p>
-                    </div>
-                    <!-- Skills -->
-                    <div class="tab-contents active-tab" id="skills">
-                        <ul>
-                            <li><span>Youtube channel manage</span></li>
-                            <li>Thumbnail making<br></li>
-                            <li><span>Editing</span><br>Video Editor</li>
-                            <li>Attention to details</li>
-                            <li>long and short form content</li>
-                            <li><span>Micorsoft</span></li>
-                            <li>Powerpoint</li>
-                            <li>Word</li>
-                            <li>Excle</li>
-                            <li><span>Extra</span></li>
-                            <li>Branding</li>
-                            <li>Storytelling</li>
-                        </ul>
-                    </div>
-                    <!-- exp -->
-                    <div class="tab-contents" id="experiance">
-                        <ul>
-                            <li><span>2020-2023</span><br>Editing & learning video<br>editing </li>
-                            <li><span>2024</span></li>
-                            <li>learnt and ran a channel<br>(got it up to 1000+ views in 1month)</li>
-                            <li>I can meet dead lines effectively</li>
-                            <li class="open">Still open to learn</li>
-                        </ul>
-                    </div>
-                    <!-- education -->
-                    <div class="tab-contents" id="education">
-                        <ul>
-                            <li><span>School</span></li>
-                            <li>Entering a college</li>
-                            <li><span>Editing</span><br>Self-learnet</li>
-                        </ul>
-                    </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- -----------------------Services------------------------- -->
-<div id="services">
-    <div class="container">
-        <h1 class="sub-title">My Services</h1>
-        <div class="services-list">
-            <div>
-                <i class="fa-solid fa-wand-magic-sparkles"></i>
-                <h1>Editing</h1>
-                <ul>
-                    <li><p>Video Editting</p></li>
-                    <li><p>Post production</p></li>
-                    <li><p>Long & short form video editing</p></li>
-                </ul>
-                <a target="_blank" href="prizing.html">Click here Learn more.</a>
-            </div>
-            <div>
-                <i class="fa-solid fa-arrow-pointer"></i>
-                <h1>Microsoft 365</h1>
-                <ul>
-                    <li><p>Making and engagging Presentation(PPT)</p></li>
-                    <li><p>Working with all kinds of Word documents</p></li>
-                    <li><p>And all types of excel sheet</p></li>
-                </ul>
-                <a target="_blank" href="prizing.html">Click here learn more.</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- --------------------Porfolio-------------------- -->
-<div id="portfolio">
-    <div class="container">
-        <h1 class="sub-title">My Work</h1>
-        <div class="work-list">
-            <div class="work">
-                 <img src="work-1.png">
-                 <div class="layer">
-                    <h3>A month challenge</h3>
-                    <p>I took a 1 month challange to take a channel from scratch to 1000+ views within 1 month</p>
-                    <a target="_blank" href="https://www.youtube.com/channel/UCNpMvzY0GOEj3F_ElQqfFpA?sub_confirmation=1"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                 </div>
-            </div>
-            <div class="work">
-                <img src="work-2.png">
-                <div class="layer">
-                    <h3>YouTube Thumbnails</h3>
-                    <p>The Thumbnail mentioned above are purly made in Microsoft Powerpoint by me </p>
-                    <a target="_blank" href="https://www.youtube.com/watch?v=6iWwF6xYhyU&t=13s"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                 </div>
-           </div>
-           <div class="work">
-            <img src="work-3.png">
-            <div class="layer">
-                <h3>My canva abilities</h3>
-                <p>I made this birthday card of mine at the age of 17 from scratch</p>
-                <a target="_blank" href="https://www.canva.com/design/DAGB1DVYBLU/6b42Q919Nc91CVZNagx83w/view?utm_content=DAGB1DVYBLU&utm_campaign=designshare&utm_medium=link&utm_source=editor"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-             </div>
-            </div>
-        </div>
-    </div>
-    <a href="#" class="btn">See more</a>
-</div>
-<!-- --------------------contact--------------------- -->
-<div id="contact">
-    <div class="container">
-        <div class="row">
-            <div class="contact-left">
-                <h1 class="sub-title">Contact Me</h1>
-                <p><i class="fa-solid fa-envelope"></i>purveshitankar25@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i>+917219402040</p>
-                <div class="social-icons">
-                    <a target="_blank" href="https://www.linkedin.com/in/purvesh-itankar-8764ba21a/?originalSubdomain=in"><i class="fa-brands fa-linkedin"></i></a>
-                    <a target="_blank" href="https://www.instagram.com/__heheboi__/"><i class="fa-brands fa-instagram"></i></a>
-                    <a target="_blank" href="https://wa.link/qbaziq"><i class="fa-brands fa-whatsapp"></i></a>
-                </div>
-                <a href="my_cv.pdf" download class="btn btn2">Download CV</a>
-            </div>
-            <div class="contact-right">
-                <form name="submit-to-google-sheet">
-                    <input type="text" name="Name" placeholder="Your Name" required>
-                    <input type="email" name="e-mail" placeholder="Your e-mail" required>
-                    <textarea name="Message" rows="6" placeholder="Your message"></textarea>
-                    <button type="submit" class="btn btn2">Submit</button>
-                </form>
-                <span id="msg"></span>
-            </div>
-        </div>
-    </div>
-    <div class="copyright">
-        <p>Copyright © Purvesh. Made with <i class="fa-solid fa-heart"></i> by Easy Tutorials</p>
-    </div>
-</div>
-
-
-
-
-<script>
-
-    var tablinks= document.getElementsByClassName("tab-links");
-    var tabcontents= document.getElementsByClassName("tab-contents");
-    
-    function opentab(tabname){
-        for(tablink of tablinks){
-            tablink.classList.remove("active-link");
-        }
-        for(tabcontent of tabcontents){
-            tabcontent.classList.remove("active-tab");
-        }
-        event.currentTarget.classList.add("active-link");
-        document.getElementById(tabname).classList.add("active-tab");
-    }
-
-</script>
-<script>
-
-    var sidemenu = document.getElementById("sidemenu");
-
-    function openmenu()
-    {
-        sidemenu.style.right = "0";
-    }
-    function closemenu()
-    {
-        sidemenu.style.right = "-200px";
-    }
-
-</script>
-
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbys0XH8c9DLWZmFrNw-p8Mgakaqb5od4k7r93Fh0f-dmR0_zsWy0eZK3LyozOJYIN28bA/exec'
-    const form = document.forms['submit-to-google-sheet']
-    const msg = document.getElementById("msg")
-
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => {
-            msg.innerHTML = "Message sent successfully"
-            setTimeout(function(){
-                msg.innerHTML = ""
-            },5000)
-            form.reset()
-        })
-        .catch(error => console.error('Error!', error.message))
-    })
-  </script>
 </body>
 </html>
