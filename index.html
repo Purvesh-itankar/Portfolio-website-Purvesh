@@ -8,8 +8,56 @@
     <title>Purvesh Itankar</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/09c32c2d1d.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 20px;
+        }
+        
+        #myBtn {
+          display: none;
+          position: fixed;
+          bottom: 20px;
+          right: 30px;
+          z-index: 99;
+          font-size: 18px;
+          border: none;
+          outline: none;
+          background-color: #ff004f;
+          color: white;
+          cursor: pointer;
+          padding: 15px;
+          border-radius: 4px;
+        }
+        
+        #myBtn:hover {
+          background-color: #555;
+        }
+    </style>
 </head>
 <body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">↑</button>
+<script>
+// Get the button
+let mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
 <div id="header">
     <div class="container">
         <nav>
@@ -97,15 +145,23 @@
         <div class="services-list">
             <div>
                 <i class="fa-solid fa-wand-magic-sparkles"></i>
-                <h2>Editing</h2>
-                <p>Video editing<br>post-production<br>Long & short form video edding</p>
-                <a href="">learn more.</a>
+                <h1>Editing</h1>
+                <ul>
+                    <li><p>Video Editting</p></li>
+                    <li><p>Post production</p></li>
+                    <li><p>Long & short form video editing</p></li>
+                </ul>
+                <a target="_blank" href="prizing.html">Click here Learn more.</a>
             </div>
             <div>
                 <i class="fa-solid fa-arrow-pointer"></i>
-                <h2>Microsoft 365</h2>
-                <p>Making and engagging Presentation(PPT)<br>working with all kinds of Word documents<br>And all types of excel sheet</p>
-                <a href="">learn more.</a>
+                <h1>Microsoft 365</h1>
+                <ul>
+                    <li><p>Making and engagging Presentation(PPT)</p></li>
+                    <li><p>Working with all kinds of Word documents</p></li>
+                    <li><p>And all types of excel sheet</p></li>
+                </ul>
+                <a target="_blank" href="prizing.html">Click here learn more.</a>
             </div>
         </div>
     </div>
@@ -149,10 +205,10 @@
         <div class="row">
             <div class="contact-left">
                 <h1 class="sub-title">Contact Me</h1>
-                <p><i class="fa-solid fa-envelope"></i>purveshitankar24321@gmail.com</p>
+                <p><i class="fa-solid fa-envelope"></i>purveshitankar25@gmail.com</p>
                 <p><i class="fa-solid fa-phone"></i>+917219402040</p>
                 <div class="social-icons">
-                    <a target="_blank" "href="https://www.linkedin.com/in/purvesh-itankar-8764ba21a/?originalSubdomain=in"><i class="fa-brands fa-linkedin"></i></a>
+                    <a target="_blank" href="https://www.linkedin.com/in/purvesh-itankar-8764ba21a/?originalSubdomain=in"><i class="fa-brands fa-linkedin"></i></a>
                     <a target="_blank" href="https://www.instagram.com/__heheboi__/"><i class="fa-brands fa-instagram"></i></a>
                     <a target="_blank" href="https://wa.link/qbaziq"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
